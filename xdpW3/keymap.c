@@ -101,6 +101,14 @@ const uint16_t PROGMEM combo0[] = { KC_N, KC_M, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, ST_MACRO_0),
 };
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TD(DANCE_7):
+            return g_tapping_term + 11;
+        default:
+            return g_tapping_term;
+    }
+}
 
 extern rgb_config_t rgb_matrix_config;
 
