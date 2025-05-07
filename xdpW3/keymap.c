@@ -2,7 +2,6 @@
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
-LEADER_EXTERNS();
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -61,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           TD(DANCE_4),    
     KC_ESCAPE,      MT(MOD_LCTL, KC_A),MT(MOD_LSFT, KC_S),MT(MOD_LALT, KC_D),MT(MOD_LGUI, KC_F),TD(DANCE_0),    TD(DANCE_1),                                                                    TD(DANCE_5),    TD(DANCE_6),    MT(MOD_RCTL, KC_J),MT(MOD_RSFT, KC_K),MT(MOD_LALT, KC_L),TD(DANCE_7),    TD(DANCE_8),    
     KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           TD(DANCE_9),    TD(DANCE_10),   TD(DANCE_11),   TD(DANCE_12),   
-    KC_TRANSPARENT, TT(4),          KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       QK_REPEAT_KEY,                                                                                                          LSFT(KC_RIGHT_GUI),KC_UP,          KC_DOWN,        KC_TRANSPARENT, KC_TRANSPARENT, TD(DANCE_13),   
+    KC_TRANSPARENT, TT(4),          KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       QK_REPEAT_KEY,                                                                                                          QK_LEAD,KC_UP,          KC_DOWN,        KC_TRANSPARENT, KC_TRANSPARENT, TD(DANCE_13),   
     TT(1),          MO(2),          TG(3),                          KC_ENTER,       KC_BSPC,        MT(MOD_RGUI, KC_SPACE)
   ),
   [1] = LAYOUT_moonlander(
@@ -1195,17 +1194,28 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_23] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_23, dance_23_finished, dance_23_reset),
 };
 
-void matrix_scan_user(void) {
-    // This function is called every matrix scan
-    // You can use it to do things like update the LED state
-    // or check for other events that need to be handled
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
+void leader_start_user(void) {
+    // could add feedback like turning on an LED
+}
 
-    // leader + e + m
-    SEQ_TWO_KEYS(KC_E, KC_M) {
+void leader_end_user(void) {
+    // Leader + e + m → digita seu e-mail
+    if (leader_sequence_two_keys(KC_E, KC_M)) {
         SEND_STRING("guile.hm@hotmail.com");
     }
-  }
+
+    // Leader + l + d → lazydocker
+    else if (leader_sequence_two_keys(KC_L, KC_D)) {
+        SEND_STRING("lazydocker");
+    }
+
+    // Leader + l + g → lazygit
+    else if (leader_sequence_two_keys(KC_L, KC_G)) {
+        SEND_STRING("lazygit");
+    }
+
+    // Leader + s + p → JSON com partner_id e platform_name
+    else if (leader_sequence_two_keys(KC_S, KC_P)) {
+        SEND_STRING("{\"partner_id\": \"\", \"platform_name\":\"quickbooks_desktop\"}");
+    }
 }
