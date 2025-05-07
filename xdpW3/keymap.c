@@ -1199,14 +1199,9 @@ void leader_start_user(void) {
 }
 
 void leader_end_user(void) {
-    // Leader + e + m → digita seu e-mail
+    // Leader + e + m → type my e-mail
     if (leader_sequence_two_keys(KC_E, KC_M)) {
         SEND_STRING("guile.hm@hotmail.com");
-    }
-
-    // Leader + l + d → lazydocker
-    else if (leader_sequence_two_keys(KC_L, KC_D)) {
-        SEND_STRING("lazydocker");
     }
 
     // Leader + l + g → lazygit
@@ -1214,8 +1209,13 @@ void leader_end_user(void) {
         SEND_STRING("lazygit");
     }
 
-    // Leader + s + p → JSON com partner_id e platform_name
-    else if (leader_sequence_two_keys(KC_S, KC_P)) {
-        SEND_STRING("{\"partner_id\": \"\", \"platform_name\":\"quickbooks_desktop\"}");
+    // Leader + l + d → lazydocker
+    else if (leader_sequence_two_keys(KC_L, KC_D)) {
+        SEND_STRING("lazydocker");
     }
+
+    // Leader + s + p → JSON for sync payload
+    else if (leader_sequence_two_keys(KC_S, KC_P)) {
+        SEND_STRING("{\" partner_id\" : \" \" , \" platform_name\" :\" quickbooks_desktop\" }");
+  }
 }
