@@ -2,6 +2,7 @@
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
+LEADER_EXTERNS();
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
@@ -1193,3 +1194,18 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_22] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_22, dance_22_finished, dance_22_reset),
         [DANCE_23] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_23, dance_23_finished, dance_23_reset),
 };
+
+void matrix_scan_user(void) {
+    // This function is called every matrix scan
+    // You can use it to do things like update the LED state
+    // or check for other events that need to be handled
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    // leader + e + m
+    SEQ_TWO_KEYS(KC_E, KC_M) {
+        SEND_STRING("guile.hm@hotmail.com");
+    }
+  }
+}
