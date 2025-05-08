@@ -3,6 +3,8 @@
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
+static bool leader_active = false;
+
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   ST_MACRO_0,
@@ -156,6 +158,13 @@ bool rgb_matrix_indicators_user(void) {
       return false;
   }
   if (keyboard_config.disable_layer_led) { return false; }
+
+
+  if (leader_active) {
+      rgb_matrix_set_color_all(0, 255, 0); // green while leader is active
+      return true;
+  }
+
   switch (biton32(layer_state)) {
     case 0:
       set_layer_color(0);
@@ -1196,6 +1205,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
 void leader_start_user(void) {
     // could add feedback like turning on an LED
+    leader_active = true;
 }
 
 void leader_end_user(void) {
@@ -1217,5 +1227,12 @@ void leader_end_user(void) {
     // Leader + s + p → JSON for sync payload
     else if (leader_sequence_two_keys(KC_S, KC_P)) {
         SEND_STRING("{\" partner_id\" : \" \" , \" platform_name\" :\" quickbooks_desktop\" }");
-  }
+    }
+
+    // Leader + d + c → docker compose up
+    else if (leader_sequence_two_keys(KC_D, KC_C)) {
+        SEND_STRING("docker compose up");
+    }
+
+  leader_active = false;
 }
