@@ -1234,5 +1234,10 @@ void leader_end_user(void) {
         SEND_STRING("docker compose up");
     }
 
+    // Leader + p + l → print line
+    else if (leader_sequence_two_keys(KC_P, KC_L)) {
+        SEND_STRING("fmt.Println(\" ***************\" )");
+    }
+
   leader_active = false;
 }
