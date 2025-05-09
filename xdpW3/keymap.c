@@ -1229,8 +1229,8 @@ void leader_end_user(void) {
         SEND_STRING("{\" partner_id\" : \" \" , \" platform_name\" :\" quickbooks_desktop\" }");
     }
 
-    // Leader + d + c → docker compose up
-    else if (leader_sequence_two_keys(KC_D, KC_C)) {
+    // Leader + d + u → docker compose up
+    else if (leader_sequence_two_keys(KC_D, KC_U)) {
         SEND_STRING("docker compose up");
     }
 
