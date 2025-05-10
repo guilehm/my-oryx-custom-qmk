@@ -1238,6 +1238,13 @@ void leader_end_user(void) {
     else if (leader_sequence_two_keys(KC_P, KC_L)) {
         SEND_STRING("fmt.Println(\" ***************\" )");
     }
+     
+    // Leader + p + i → print slice
+    else if (leader_sequence_two_keys(KC_P, KC_S)) {
+        SEND_STRING("partner_id in (' ' )");
+        tap_code(KC_LEFT);
+        tap_code(KC_LEFT);
+    }
   
     // Leader + s + s → send Shift key 3 times
     else if (leader_sequence_two_keys(KC_S, KC_S)) {
