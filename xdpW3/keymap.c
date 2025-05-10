@@ -1239,8 +1239,8 @@ void leader_end_user(void) {
         SEND_STRING("fmt.Println(\" ***************\" )");
     }
      
-    // Leader + p + i → print slice
-    else if (leader_sequence_two_keys(KC_P, KC_S)) {
+    // Leader + p + i → print partner id for filling sql
+    else if (leader_sequence_two_keys(KC_P, KC_I)) {
         SEND_STRING("partner_id in (' ' )");
         tap_code(KC_LEFT);
         tap_code(KC_LEFT);
