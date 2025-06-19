@@ -916,6 +916,16 @@ void leader_end_user(void) {
         }
     }
 
+    // Leader + s + c send select count(*) from
+    else if (leader_sequence_two_keys(KC_S, KC_C)) {
+        SEND_STRING("select count(*) from ");
+    }
+
+    // Leader + s + a → send select * from
+    else if (leader_sequence_two_keys(KC_S, KC_A)) {
+        SEND_STRING("select * from ");
+    }
+
   leader_active = false;
 }
 
