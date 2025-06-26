@@ -42,19 +42,19 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
-#define DUAL_FUNC_0 LT(14, KC_R)
-#define DUAL_FUNC_1 LT(5, KC_4)
-#define DUAL_FUNC_2 LT(12, KC_F19)
-#define DUAL_FUNC_3 LT(7, KC_M)
-#define DUAL_FUNC_4 LT(12, KC_F4)
-#define DUAL_FUNC_5 LT(1, KC_B)
-#define DUAL_FUNC_6 LT(10, KC_F21)
-#define DUAL_FUNC_7 LT(7, KC_8)
-#define DUAL_FUNC_8 LT(8, KC_E)
-#define DUAL_FUNC_9 LT(1, KC_S)
-#define DUAL_FUNC_10 LT(10, KC_5)
-#define DUAL_FUNC_11 LT(2, KC_A)
-#define DUAL_FUNC_12 LT(11, KC_P)
+#define DUAL_FUNC_0 LT(9, KC_F5)
+#define DUAL_FUNC_1 LT(7, KC_X)
+#define DUAL_FUNC_2 LT(2, KC_C)
+#define DUAL_FUNC_3 LT(15, KC_F8)
+#define DUAL_FUNC_4 LT(3, KC_X)
+#define DUAL_FUNC_5 LT(8, KC_F4)
+#define DUAL_FUNC_6 LT(10, KC_F5)
+#define DUAL_FUNC_7 LT(14, KC_E)
+#define DUAL_FUNC_8 LT(1, KC_F21)
+#define DUAL_FUNC_9 LT(4, KC_R)
+#define DUAL_FUNC_10 LT(13, KC_F13)
+#define DUAL_FUNC_11 LT(10, KC_X)
+#define DUAL_FUNC_12 LT(13, KC_R)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,      MT(MOD_LCTL, KC_A),MT(MOD_LSFT, KC_S),MT(MOD_LALT, KC_D),MT(MOD_LGUI, KC_F),TD(DANCE_0),    TD(DANCE_1),                                                                    TD(DANCE_3),    TD(DANCE_4),    MT(MOD_RCTL, KC_J),MT(MOD_RSFT, KC_K),MT(MOD_LALT, KC_L),TD(DANCE_5),    TD(DANCE_6),    
     KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         DUAL_FUNC_2,    DUAL_FUNC_3,    
     TT(4),          KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_NO,                                                                                                          KC_TRANSPARENT, KC_UP,          KC_DOWN,        KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_4,    
-    MO(1),          MO(2),          TG(3),                          KC_ENTER,       KC_BSPC,        MT(MOD_RGUI, KC_SPACE)
+    MO(1),          MO(2),          MO(3),                          KC_ENTER,       KC_BSPC,        MT(MOD_RGUI, KC_SPACE)
   ),
   [1] = LAYOUT_moonlander(
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT, 
