@@ -42,26 +42,26 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
-#define DUAL_FUNC_0 LT(15, KC_T)
-#define DUAL_FUNC_1 LT(15, KC_N)
-#define DUAL_FUNC_2 LT(10, KC_A)
-#define DUAL_FUNC_3 LT(1, KC_T)
-#define DUAL_FUNC_4 LT(15, KC_F16)
-#define DUAL_FUNC_5 LT(2, KC_O)
-#define DUAL_FUNC_6 LT(7, KC_4)
-#define DUAL_FUNC_7 LT(12, KC_F20)
-#define DUAL_FUNC_8 LT(8, KC_L)
-#define DUAL_FUNC_9 LT(12, KC_F23)
-#define DUAL_FUNC_10 LT(13, KC_S)
-#define DUAL_FUNC_11 LT(1, KC_A)
-#define DUAL_FUNC_12 LT(15, KC_A)
+#define DUAL_FUNC_0 LT(5, KC_F9)
+#define DUAL_FUNC_1 LT(9, KC_F2)
+#define DUAL_FUNC_2 LT(2, KC_F19)
+#define DUAL_FUNC_3 LT(1, KC_Q)
+#define DUAL_FUNC_4 LT(13, KC_V)
+#define DUAL_FUNC_5 LT(14, KC_F5)
+#define DUAL_FUNC_6 LT(7, KC_6)
+#define DUAL_FUNC_7 LT(10, KC_M)
+#define DUAL_FUNC_8 LT(5, KC_I)
+#define DUAL_FUNC_9 LT(6, KC_B)
+#define DUAL_FUNC_10 LT(4, KC_5)
+#define DUAL_FUNC_11 LT(2, KC_O)
+#define DUAL_FUNC_12 LT(11, KC_F7)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_DELETE,                                      DUAL_FUNC_0,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           TD(DANCE_2),    
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           DUAL_FUNC_1,    
     KC_ESCAPE,      MT(MOD_LCTL, KC_A),MT(MOD_LSFT, KC_S),MT(MOD_LALT, KC_D),MT(MOD_LGUI, KC_F),TD(DANCE_0),    TD(DANCE_1),                                                                    TD(DANCE_3),    TD(DANCE_4),    MT(MOD_RCTL, KC_J),MT(MOD_RSFT, KC_K),MT(MOD_LALT, KC_L),TD(DANCE_5),    TD(DANCE_6),    
-    KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         DUAL_FUNC_2,    DUAL_FUNC_3,    
+    KC_SPACE,       KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         DUAL_FUNC_2,    DUAL_FUNC_3,    
     TT(4),          KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT,        KC_RIGHT,       KC_NO,                                                                                                          KC_TRANSPARENT, KC_UP,          KC_DOWN,        KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_4,    
     MO(1),          MO(2),          TG(3),                          KC_ENTER,       KC_BSPC,        MT(MOD_RGUI, KC_SPACE)
   ),
