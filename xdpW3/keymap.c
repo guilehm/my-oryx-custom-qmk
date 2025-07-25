@@ -891,7 +891,7 @@ void leader_end_user(void) {
 
     // Leader + s + p → JSON for sync payload
     else if (leader_sequence_two_keys(KC_S, KC_P)) {
-        SEND_STRING("{\" partner_id\" : \" \" , \" platform_name\" :\" quickbooks_desktop\" }");
+        SEND_STRING("{\" partner_id\" : \" \" , \" platform_name\" :\" quickbooks_desktop\" , \" updated_since\" : \"2025-08-01T00:00:00.000000Z\" }");
     }
 
     // Leader + d + c → docker compose up
