@@ -911,6 +911,16 @@ void leader_end_user(void) {
         tap_code(KC_LEFT);
     }
   
+    // Leader + p + m + i send python manage.py migrate
+    else if (leader_sequence_three_keys(KC_P, KC_M, KC_I)) {
+        SEND_STRING("python manage.py migrate");
+    }
+
+    // Leader + p + m + k send python manage.py makemigrations
+    else if (leader_sequence_three_keys(KC_P, KC_M, KC_K)) {
+        SEND_STRING("python manage.py makemigrations");
+    }
+
     // Leader + s + s → send Shift key 3 times
     else if (leader_sequence_two_keys(KC_S, KC_S)) {
         for (int i = 0; i < 3; i++) {
