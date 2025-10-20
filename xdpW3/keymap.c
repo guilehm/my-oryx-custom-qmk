@@ -45,19 +45,19 @@ enum tap_dance_codes {
   DANCE_8,
 };
 
-#define DUAL_FUNC_0 LT(7, KC_F8)
-#define DUAL_FUNC_1 LT(3, KC_U)
-#define DUAL_FUNC_2 LT(9, KC_F17)
-#define DUAL_FUNC_3 LT(1, KC_Z)
-#define DUAL_FUNC_4 LT(10, KC_F19)
-#define DUAL_FUNC_5 LT(2, KC_F6)
-#define DUAL_FUNC_6 LT(14, KC_P)
-#define DUAL_FUNC_7 LT(15, KC_S)
-#define DUAL_FUNC_8 LT(8, KC_J)
-#define DUAL_FUNC_9 LT(11, KC_S)
-#define DUAL_FUNC_10 LT(2, KC_F5)
-#define DUAL_FUNC_11 LT(14, KC_5)
-#define DUAL_FUNC_12 LT(14, KC_F20)
+#define DUAL_FUNC_0 LT(1, KC_D)
+#define DUAL_FUNC_1 LT(9, KC_B)
+#define DUAL_FUNC_2 LT(11, KC_F5)
+#define DUAL_FUNC_3 LT(5, KC_S)
+#define DUAL_FUNC_4 LT(7, KC_A)
+#define DUAL_FUNC_5 LT(8, KC_5)
+#define DUAL_FUNC_6 LT(3, KC_1)
+#define DUAL_FUNC_7 LT(8, KC_F11)
+#define DUAL_FUNC_8 LT(6, KC_F8)
+#define DUAL_FUNC_9 LT(1, KC_V)
+#define DUAL_FUNC_10 LT(4, KC_7)
+#define DUAL_FUNC_11 LT(9, KC_7)
+#define DUAL_FUNC_12 LT(5, KC_E)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_LEFT_SHIFT,  KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_H,           KC_J,           KC_K,           KC_L,           KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_LEFT_CTRL,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT_ALT,    KC_MS_BTN1,     KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT_ALT,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_SPACE,       KC_ENTER,       KC_NO,                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
 };
@@ -570,6 +570,22 @@ tap_dance_action_t tap_dance_actions[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case QK_MODS ... QK_MODS_MAX: 
+    // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
+    // applied to the mouse key that was pressed.
+    if (IS_MOUSE_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
+    if (record->event.pressed) {
+        add_mods(QK_MODS_GET_MODS(keycode));
+        send_keyboard_report();
+        wait_ms(2);
+        register_code(QK_MODS_GET_BASIC_KEYCODE(keycode));
+        return false;
+      } else {
+        wait_ms(2);
+        del_mods(QK_MODS_GET_MODS(keycode));
+      }
+    }
+    break;
     case ST_MACRO_0:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_N)SS_DELAY(30)  SS_TAP(X_V)SS_DELAY(30)  SS_TAP(X_I)SS_DELAY(30)  SS_TAP(X_M));
