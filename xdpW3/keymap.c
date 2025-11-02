@@ -168,7 +168,14 @@ bool rgb_matrix_indicators_user(void) {
   if (rawhid_state.rgb_control) {
       return false;
   }
-  if (!keyboard_config.disable_layer_led) { 
+
+  if (leader_active) {
+      // Set all LEDs to turquoise when leader is active
+      rgb_matrix_set_color_all(69, 240, 223);
+      return true;
+  }
+
+  if (!keyboard_config.disable_layer_led) {
     switch (biton32(layer_state)) {
       case 0:
         set_layer_color(0);
@@ -964,7 +971,6 @@ void leader_end_user(void) {
     // Leader + s + a → send select * from
     else if (leader_sequence_two_keys(KC_S, KC_A)) {
         SEND_STRING("select * from ");
-
     }
   leader_active = false;
 }
