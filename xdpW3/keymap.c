@@ -1,8 +1,14 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include <math.h>
+
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
+#endif
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
 #endif
 
 static bool leader_active = false;
