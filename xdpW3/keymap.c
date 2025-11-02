@@ -6,6 +6,7 @@
 #endif
 
 static bool leader_active = false;
+static uint16_t leader_timer = 0;
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
@@ -170,8 +171,17 @@ bool rgb_matrix_indicators_user(void) {
   }
 
   if (leader_active) {
-      // Set all LEDs to turquoise when leader is active
-      rgb_matrix_set_color_all(69, 240, 223);
+      // Pulse effect for leader key: creates a breathing animation
+      uint16_t time_elapsed = timer_elapsed(leader_timer);
+      float breathing = (exp(sin(time_elapsed / 500.0 * M_PI)) - 0.36787944) * 108.0;
+      uint8_t brightness = (uint8_t)(breathing);
+
+      // Scale the turquoise color (69, 240, 223) by brightness
+      rgb_matrix_set_color_all(
+          (69 * brightness) / 255,
+          (240 * brightness) / 255,
+          (223 * brightness) / 255
+      );
       return true;
   }
 
@@ -903,76 +913,83 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 void leader_start_user(void) {
-    // could add feedback like turning on an LED
+    // Activate LED pulse effect when leader key is pressed
     leader_active = true;
+    leader_timer = timer_read();
 }
 
 void leader_end_user(void) {
+    // Email Commands
     if (leader_sequence_two_keys(KC_E, KC_M)) {
-    // Leader + e + m → type my e-mail
+        // Leader + e + m: type my email
         SEND_STRING("guile.hm@hotmail.com");
-
     }
-    // Leader + l + g → lazygit
+
+    // Development Tools
     else if (leader_sequence_two_keys(KC_L, KC_G)) {
+        // Leader + l + g: lazygit
         SEND_STRING("lazygit");
     }
-
-    // Leader + l + d → lazydocker
     else if (leader_sequence_two_keys(KC_L, KC_D)) {
+        // Leader + l + d: lazydocker
         SEND_STRING("lazydocker");
     }
 
-    // Leader + s + p → JSON for sync payload
-    else if (leader_sequence_two_keys(KC_S, KC_P)) {
-        SEND_STRING("{\" partner_id\" : \" \" , \" updated_since\" : \" 2025-08-01T00:00:00.000000Z\" , \" platform\" :\" quickbooks_desktop\" }");
-
-    }
-    // Leader + d + c → docker compose up
+    // Docker Commands
     else if (leader_sequence_two_keys(KC_D, KC_C)) {
+        // Leader + d + c: docker compose up
         SEND_STRING("docker compose up");
     }
 
-    // Leader + p + l → print line
-    else if (leader_sequence_two_keys(KC_P, KC_L)) {
-        SEND_STRING("fmt.Println(\" ***************\" )");
+    // API/JSON Templates
+    else if (leader_sequence_two_keys(KC_S, KC_P)) {
+        // Leader + s + p: JSON sync payload template
+        SEND_STRING("{\" partner_id\" : \" \" , \" updated_since\" : \" 2025-08-01T00:00:00.000000Z\" , \" platform\" :\" quickbooks_desktop\" }");
     }
-     
-    // Leader + p + i → print partner id for filling sql
+
+    // Programming Helpers
+    else if (leader_sequence_two_keys(KC_P, KC_L)) {
+        // Leader + p + l: Go print line debug
+        SEND_STRING("println(\" ***************\" )");
+    }
+
+    // SQL Commands
     else if (leader_sequence_two_keys(KC_P, KC_I)) {
+        // Leader + p + i: SQL partner_id IN clause template
         SEND_STRING("partner_id in (' ' )");
         tap_code(KC_LEFT);
         tap_code(KC_LEFT);
     }
-  
-    else if (leader_sequence_three_keys(KC_P, KC_M, KC_I)) {
-    // Leader + p + m + i send python manage.py migrate
-        SEND_STRING("python manage.py migrate");
+    else if (leader_sequence_two_keys(KC_S, KC_C)) {
+        // Leader + s + c: SQL select count
+        SEND_STRING("select count(*) from ");
+    }
+    else if (leader_sequence_two_keys(KC_S, KC_A)) {
+        // Leader + s + a: SQL select all
+        SEND_STRING("select * from ");
     }
 
-    // Leader + p + m + k send python manage.py makemigrations
+    // Python/Django Commands
+    else if (leader_sequence_three_keys(KC_P, KC_M, KC_I)) {
+        // Leader + p + m + i: Django migrate
+        SEND_STRING("python manage.py migrate");
+    }
     else if (leader_sequence_three_keys(KC_P, KC_M, KC_K)) {
+        // Leader + p + m + k: Django makemigrations
         SEND_STRING("python manage.py makemigrations");
     }
 
-    // Leader + s + s → send Shift key 3 times
+    // System Shortcuts
     else if (leader_sequence_two_keys(KC_S, KC_S)) {
+        // Leader + s + s: send Shift key 3 times (for search in IntelliJ)
         for (int i = 0; i < 3; i++) {
             register_code(KC_LSFT);
             unregister_code(KC_LSFT);
         }
     }
 
-    // Leader + s + c send select count(*) from
-    else if (leader_sequence_two_keys(KC_S, KC_C)) {
-        SEND_STRING("select count(*) from ");
-    }
-
-    // Leader + s + a → send select * from
-    else if (leader_sequence_two_keys(KC_S, KC_A)) {
-        SEND_STRING("select * from ");
-    }
-  leader_active = false;
+    // Deactivate leader mode and stop pulse effect
+    leader_active = false;
 }
 // Customize quick tap behavior for specific keys.
 
