@@ -49,22 +49,22 @@ enum tap_dance_codes {
   DANCE_5,
 };
 
-#define DUAL_FUNC_0 LT(11, KC_L)
-#define DUAL_FUNC_1 LT(15, KC_G)
-#define DUAL_FUNC_2 LT(2, KC_U)
-#define DUAL_FUNC_3 LT(15, KC_8)
-#define DUAL_FUNC_4 LT(1, KC_L)
-#define DUAL_FUNC_5 LT(4, KC_W)
-#define DUAL_FUNC_6 LT(10, KC_0)
-#define DUAL_FUNC_7 LT(14, KC_G)
-#define DUAL_FUNC_8 LT(3, KC_4)
-#define DUAL_FUNC_9 LT(3, KC_F13)
-#define DUAL_FUNC_10 LT(12, KC_T)
-#define DUAL_FUNC_11 LT(8, KC_3)
-#define DUAL_FUNC_12 LT(11, KC_Z)
-#define DUAL_FUNC_13 LT(1, KC_F6)
-#define DUAL_FUNC_14 LT(11, KC_F23)
-#define DUAL_FUNC_15 LT(2, KC_X)
+#define DUAL_FUNC_0 LT(11, KC_9)
+#define DUAL_FUNC_1 LT(1, KC_C)
+#define DUAL_FUNC_2 LT(14, KC_Y)
+#define DUAL_FUNC_3 LT(5, KC_W)
+#define DUAL_FUNC_4 LT(11, KC_P)
+#define DUAL_FUNC_5 LT(6, KC_F15)
+#define DUAL_FUNC_6 LT(3, KC_L)
+#define DUAL_FUNC_7 LT(2, KC_Q)
+#define DUAL_FUNC_8 LT(14, KC_L)
+#define DUAL_FUNC_9 LT(9, KC_F3)
+#define DUAL_FUNC_10 LT(7, KC_F9)
+#define DUAL_FUNC_11 LT(13, KC_F9)
+#define DUAL_FUNC_12 LT(4, KC_I)
+#define DUAL_FUNC_13 LT(13, KC_F8)
+#define DUAL_FUNC_14 LT(2, KC_5)
+#define DUAL_FUNC_15 LT(6, KC_2)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
@@ -106,6 +106,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LEFT_CTRL,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_LEFT_ALT,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_ESCAPE,      KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_SPACE,       KC_ENTER,       KC_MS_BTN1,                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+  ),
+  [5] = LAYOUT_moonlander(
+    KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
 };
 
@@ -152,6 +160,8 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
     [3] = { {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {77,5,244}, {77,5,244}, {15,250,243}, {15,250,243}, {77,5,244}, {15,250,243}, {15,250,243}, {0,0,255}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {77,5,244}, {77,5,244}, {77,5,244}, {15,250,243}, {15,250,243}, {77,5,244}, {77,5,244}, {77,5,244}, {15,250,243}, {15,250,243}, {77,5,244}, {77,5,244}, {77,5,244}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243}, {15,250,243} },
 
     [4] = { {188,218,204}, {188,218,204}, {197,249,243}, {197,249,243}, {0,0,255}, {188,218,204}, {188,218,204}, {215,249,242}, {188,218,204}, {188,218,204}, {188,218,204}, {215,249,242}, {215,249,242}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {215,249,242}, {188,218,204}, {197,249,243}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {197,249,243}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {197,249,243}, {197,249,243}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {187,255,175}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204}, {188,218,204} },
+
+    [5] = { {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244}, {63,191,244} },
 
 };
 
@@ -208,6 +218,9 @@ bool rgb_matrix_indicators_user(void) {
       case 4:
         set_layer_color(4);
         break;
+      case 5:
+        set_layer_color(5);
+        break;
      default:
         if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
           rgb_matrix_set_color_all(0, 0, 0);
@@ -221,7 +234,6 @@ bool rgb_matrix_indicators_user(void) {
 
   return true;
 }
-
 
 
 typedef struct {
@@ -482,8 +494,8 @@ tap_dance_action_t tap_dance_actions[] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX: 
-    // Mouse keys with modifiers work inconsistently across operating systems, this makes sure that modifiers are always
-    // applied to the mouse key that was pressed.
+    // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
+    // this makes sure that modifiers are always applied to the key that was pressed.
     if (IS_MOUSE_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
     if (record->event.pressed) {
         add_mods(QK_MODS_GET_MODS(keycode));
