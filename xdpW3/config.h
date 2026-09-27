@@ -12,8 +12,8 @@
 #define MOUSEKEY_TIME_TO_MAX 30
 
 #define CAPS_LOCK_STATUS
-#define SERIAL_NUMBER "xdpW3/yoAXAx"
-#define LAYER_STATE_8BIT
+#define SERIAL_NUMBER "xdpW3/lbYB4w"
+#define LAYER_STATE_16BIT
 #define COMBO_COUNT 1
 
 #define TAPPING_TERM_PER_KEY
